@@ -21,14 +21,18 @@ function ApodCard({ item }) {
       <h2 style={{ fontSize: "1.2rem", fontWeight: 700, margin: "0 0 0.2rem" }}>{item.title}</h2>
       <p style={{ fontSize: "0.85rem", color: "#555", margin: "0 0 1rem" }}>{item.date}</p>
 
-      {isVideo ? (
-        <p style={{ margin: "0 0 1rem" }}>
-          <a href={item.url} target="_blank" rel="noopener noreferrer"
-            style={{ color: "#0070f3", textDecoration: "underline" }}>
-            Abrir video en una nueva pestaña
-          </a>
-        </p>
-      ) : (
+    {isVideo ? (
+  <div style={{ marginBottom: "1rem" }}>
+    <iframe
+      src={item.url}
+      title={item.title}
+      width="100%"
+      height="400"
+      style={{ borderRadius: 8, border: "none" }}
+      allowFullScreen
+    />
+  </div>
+) : (
         <img src={item.hdurl || item.url} alt={item.title}
           style={{ width: "100%", maxHeight: 480, objectFit: "cover", borderRadius: 8, display: "block", marginBottom: "1rem" }}
         />
@@ -98,7 +102,7 @@ export default function Home() {
 
       <div style={{ border: "1px solid #ccc", borderRadius: 8, padding: "1.25rem", marginBottom: "2rem", background: "#fafafa" }}>
 
-        <p style={{ fontWeight: 600, marginBottom: "0.75rem" }}>1) Modo de consulta (radio)</p>
+        <p style={{ fontWeight: 600, marginBottom: "0.75rem" }}>1) Modo de consulta</p>
         <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap", marginBottom: "1rem" }}>
           <RadioButton id="mode-today" name="mode" value="today" label="Foto de hoy"        checked={mode === "today"} onChange={handleModeChange} />
           <RadioButton id="mode-date"  name="mode" value="date"  label="Fecha específica"   checked={mode === "date"}  onChange={handleModeChange} />
