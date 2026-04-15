@@ -41,3 +41,11 @@ function ApodCard({ item }) {
     </div>
   );
 }
+export default function Home() {
+  const [mode, setMode] = useState("today");
+  const [date, setDate] = useState("");
+  const [count, setCount] = useState(3);
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+}
