@@ -48,4 +48,17 @@ export default function Home() {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  function buildUrl() {
+    const params = new URLSearchParams({ api_key: API_KEY });
+    if (mode === "date" && date) params.append("date", date);
+    else if (mode === "count") params.append("count", count);
+    return `${BASE_URL}?${params.toString()}`;
+  }
+
+  useEffect(() => {
+    if (mode === "today") {
+      fetchApod();
+    }
+  }, [mode]);
 }
