@@ -61,4 +61,23 @@ export default function Home() {
       fetchApod();
     }
   }, [mode]);
+
+  async function fetchApod() {
+    setLoading(true);
+    setError(null);
+    setResults([]);
+    try {
+      const res = await fetch(buildUrl());
+      if (!res.ok) {
+        const errData = await res.json();
+        throw new Error(errData.msg || `Error ${res.status}`);
+      }
+      const data = await res.json();
+      setResults(Array.isArray(data) ? data : [data]);
+    } catch (err) {
+      setError(err.message || "Error al consultar la API.");
+    } finally {
+      setLoading(false);
+    }
+  }
 }
