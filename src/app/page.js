@@ -80,4 +80,14 @@ export default function Home() {
       setLoading(false);
     }
   }
+  function handleClear() {
+    setResults([]);
+    setError(null);
+  }
+
+  function handleModeChange(e) {
+    setMode(e.target.value);
+    setResults([]);
+    setError(null);
+  }
 }
